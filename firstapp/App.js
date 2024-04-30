@@ -5,19 +5,19 @@ export default function App() {
   return (
     <View style={styles.container}>   
 
-      <View style={{width:"85%",height:"10%", justifyContent:"flex-end",}}>
-        <Text style={styles.bandil}>BANDIL APP</Text>
+      <View style={styles.baslik}>
+        <Text style={styles.bandil}>BANDIL</Text>
       </View>
 
-      <View style={{width:"85%",height:"10%",justifyContent:"center"}}>
+      <View style={styles.girisbilgi}>
         <TextInput placeholder='Kullanıcı Adınız' placeholderTextColor={"gray"} style={styles.textinput}></TextInput>
       </View>
 
-      <View style={{width:"85%",height:"10%", justifyContent:"center"}}>
+      <View style={styles.girisbilgi}>
         <TextInput placeholder='Şifreniz' placeholderTextColor={"gray"} style={styles.textinput}></TextInput>
       </View>
         
-      <View style={{width:"60%", height:"5%", borderRadius:50, backgroundColor:"#6CA4E0", justifyContent:"center", marginBottom:10}}>
+      <View style={styles.girisbutton}>
         <Text style={{color:"white", textAlign:"center",}}>Giriş Yap</Text>
       </View>
         
@@ -60,4 +60,23 @@ const styles = StyleSheet.create({
     borderColor:"white",
     
   },
+  girisbilgi:{
+    width:"85%",
+    height:"10%",
+    justifyContent:"center"
+  },
+  girisbutton:{
+    width:"60%", 
+    height:"5%", 
+    borderRadius:50, 
+    backgroundColor:"#6CA4E0", 
+    justifyContent:"center", 
+    marginBottom:10
+  },
+  baslik:{
+    width:"85%",
+    height:"10%", 
+    justifyContent:"flex-end",
+  },
+
 });
