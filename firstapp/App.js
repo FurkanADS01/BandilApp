@@ -1,8 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { 
+  Alert, 
+  Button, 
+  Image, 
+  KeyboardAvoidingView, 
+  Pressable, 
+  StyleSheet, 
+  Text, 
+  TextInput, 
+  View, 
+} from 'react-native';
+
+import React, {useState} from 'react';
+import Loading from './src/components/Loading';
 
 export default function App() {
+
+  const [kullaniciAdi, setKullaniciAdi] = useState("")
+  const [sifre, setSifre] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+
   return (
+    
     <View style={styles.container}>   
 
       <View style={styles.baslik}>
@@ -10,18 +29,35 @@ export default function App() {
       </View>
 
       <View style={styles.girisbilgi}>
-        <TextInput placeholder='Kullanıcı Adınız' placeholderTextColor={"gray"} style={styles.textinput}></TextInput>
+        <TextInput 
+          placeholder='Kullanıcı Adınız' 
+          placeholderTextColor={"gray"} 
+          onChangeText={setKullaniciAdi} 
+          value={kullaniciAdi}
+          style={styles.textinput}></TextInput>
       </View>
 
       <View style={styles.girisbilgi}>
-        <TextInput placeholder='Şifreniz' placeholderTextColor={"gray"} style={styles.textinput}></TextInput>
+        <TextInput 
+          secureTextEntry={true}
+          placeholder='Şifreniz' 
+          placeholderTextColor={"gray"} 
+          onChangeText={setSifre}
+          value={sifre} 
+          style={styles.textinput}></TextInput>
       </View>
         
-      <View style={styles.girisbutton}>
-        <Text style={{color:"white", textAlign:"center",}}>Giriş Yap</Text>
-      </View>
+      <Pressable 
+        onPress={()=> setIsLoading(true)}
+        style={({pressed})=>[{
+          backgroundColor: pressed ? "gray" : "#6CA4E0"
+        },styles.girisbutton] }>
+
+        <Text style={styles.giristext}>Giriş Yap</Text>
+
+      </Pressable>
         
-      <View style={{width:"85%", height:"10%", flexDirection:"row"}}>
+      <View style={{width:"85%", height:"10%", flexDirection:"row",marginTop:10}}>
 
         <View style={{flex:2, alignItems:"flex-end"}}>
         <Text style={{color:"white", fontSize:15 }}>       Yeni misiniz ?  O halde  </Text>
@@ -32,9 +68,13 @@ export default function App() {
         </View>
 
       </View>
-      <StatusBar style="light" />   
+      <StatusBar style="light" />  
+
+      {isLoading ? <Loading/> : null}
+
+
+
     </View>
-    
   );
 }
  
@@ -58,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius:40,
     textAlign:"center",
     borderColor:"white",
-    
+    color:"white",    
   },
   girisbilgi:{
     width:"85%",
@@ -68,10 +108,13 @@ const styles = StyleSheet.create({
   girisbutton:{
     width:"60%", 
     height:"5%", 
-    borderRadius:50, 
-    backgroundColor:"#6CA4E0", 
+    borderRadius:50,
     justifyContent:"center", 
-    marginBottom:10
+    marginVertical:25,
+  },
+  giristext:{
+    color:"white", 
+    textAlign:"center",
   },
   baslik:{
     width:"85%",
