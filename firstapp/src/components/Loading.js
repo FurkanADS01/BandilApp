@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     loadingText:{
         color:"blue",
         fontSize:20,
+        margin: "center",
     }
 
 })
