@@ -1,14 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { 
-  Alert, 
-  Button, 
-  Image, 
-  KeyboardAvoidingView, 
+import {
   Pressable, 
   StyleSheet, 
   Text, 
   TextInput, 
   View, 
+  Image,
 } from 'react-native';
 
 import React, {useState} from 'react';
@@ -24,9 +21,10 @@ const LoginPage = ({navigation}) => {
     
     <View style={styles.container}>   
 
-      <View style={styles.baslik}>
-        <Text style={styles.bandil}>BANDIL</Text>
-      </View>
+      <Image 
+        style={styles.image} 
+        source={require('C:/Users/furka/OneDrive/Belgeler/GitHub/Spor-Salonu-Uygulamasi/firstapp/assets/images/Logo.png')}
+      />
 
       <View style={styles.girisbilgi}>
         <TextInput 
@@ -87,23 +85,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bandil:{
-    fontWeight: "bold",
-    textAlign:"center",
-    fontSize:35,
-    color:"white",
+  image:{
+    width:400,
+    height:200,
   },
   textinput:{
-    borderWidth:2,
+    borderWidth:1,
     width:'100%',
-    height:'75%',
+    height:'65%',
     borderRadius:40,
     textAlign:"center",
     borderColor:"white",
     color:"white",    
   },
   girisbilgi:{
-    width:"85%",
+    border:1,
+    
+    width:"95%",
     height:"10%",
     justifyContent:"center"
   },
@@ -118,10 +116,4 @@ const styles = StyleSheet.create({
     color:"white", 
     textAlign:"center",
   },
-  baslik:{
-    width:"85%",
-    height:"10%", 
-    justifyContent:"flex-end",
-  },
-
 });
