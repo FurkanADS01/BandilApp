@@ -99,8 +99,6 @@ const styles = StyleSheet.create({
     color:"white",    
   },
   girisbilgi:{
-    border:1,
-    
     width:"95%",
     height:"10%",
     justifyContent:"center"
