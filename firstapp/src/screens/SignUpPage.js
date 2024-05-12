@@ -11,7 +11,7 @@ import {
 import React, {useState} from 'react';
 
 
-const SignUpPage = () => {
+const SignUpPage = ({navigation}) => {
 
   const [isimSoy, setIsimSoy] = useState("")
   const [mail, setMail] = useState("")
@@ -22,10 +22,12 @@ const SignUpPage = () => {
   return (
     <SafeAreaView style={styles.container}>
 
+      <View style={styles.bosüst}></View>
+
       <View style={styles.tepe}>
         <Image 
           style={styles.image} 
-          source={require('C:/Users/furka/OneDrive/Belgeler/GitHub/Spor-Salonu-Uygulamasi/firstapp/assets/images/signupicon.png')}
+          source={require('C:/Users/furka/OneDrive/Belgeler/GitHub/Spor-Salonu-Uygulamasi/firstapp/assets/images/üyeekleme.png')}
         />
       </View>
 
@@ -54,7 +56,7 @@ const SignUpPage = () => {
 
         <TextInput 
           secureTextEntry={true}
-          placeholder='Tekrar Şifre' 
+          placeholder='Şifre Tekrar' 
           placeholderTextColor={"gray"} 
           onChangeText={setTekrarSifre}
           value={tekrarSifre} 
@@ -63,14 +65,19 @@ const SignUpPage = () => {
 
       <View style={styles.alt}> 
         <Pressable 
-          onPress={()=> setIsLoading(true)}
+          onPress={()=> console.log(isimSoy," ",mail," ",sifre)}
           style={({pressed})=>[{
             backgroundColor: pressed ? "gray" : "#6CA4E0"
           },styles.girisbutton] }>
 
-          <Text style={styles.giristext}>Kayıt Ol</Text>
+          <Text style={styles.girisbuttontext}>Kayıt Ol</Text>
 
         </Pressable>
+
+        <Pressable onPress={()=>navigation.navigate("Login")}>
+          <Text style={styles.geri}>Zaten bir hesabınız var mı?<Text style={{fontSize:15,fontWeight:"bold", color:"blue"}}> Giriş Yap</Text></Text>
+        </Pressable>
+
       </View>
 
       <StatusBar style="light" />  
@@ -88,61 +95,68 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
+  bosüst:{
+    height:50,
+  },
 
   tepe:{
-    flex:1,
+    flex:2,
     width:"100%",
     height:"100%",
     justifyContent:"center",
     alignItems:"center",
-    backgroundColor:"white",
   },
 
   image:{
-    height:149,
-    width:149,
-    
+    height:300,
+    width:300,
+    marginTop:10,
+    marginLeft:20,
   },
 
   orta:{
     flex:2,
     width:"100%",
     paddingVertical:10,
-    justifyContent:"space-between",
+    justifyContent:"flex-end",
     alignItems:"center",
-    backgroundColor:"yellow",
   },
 
   textinput:{
     borderWidth:1,
-    height:"15%",
+    height:"23%",
     width:"95%",
     borderRadius:40,
     textAlign:"center",
     borderColor:"white",
     color:"white",  
+    marginBottom:15,
   },
 
   alt:{
-    flex:3,
+    flex:2.5,
     width:"100%",
-    height:"100%",
-    backgroundColor:"red",
-    justifyContent:"center",
     alignItems:"center",
+    borderColor:"white",
+    justifyContent:"space-between",
   },
 
   girisbutton:{
-    width:"60%", 
-    height:"5%", 
+    width:"70%", 
+    height:"15%", 
     borderRadius:50,
-    justifyContent:"center", 
-    marginVertical:25,
+    justifyContent:"center",
   },
 
-  giristext:{
+  girisbuttontext:{
     color:"white", 
     textAlign:"center",
   },
+
+  geri:{
+    color:"white",
+    marginBottom:20,
+  }
 
 })

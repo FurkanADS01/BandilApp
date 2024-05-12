@@ -13,7 +13,7 @@ import Loading from '../components/Loading';
 
 const LoginPage = ({navigation}) => {
 
-  const [kullaniciAdi, setKullaniciAdi] = useState("")
+  const [mail, setMail] = useState("")
   const [sifre, setSifre] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
@@ -28,10 +28,10 @@ const LoginPage = ({navigation}) => {
 
       <View style={styles.girisbilgi}>
         <TextInput 
-          placeholder='Kullanıcı Adınız' 
+          placeholder='Mail' 
           placeholderTextColor={"gray"} 
-          onChangeText={setKullaniciAdi} 
-          value={kullaniciAdi}
+          onChangeText={setMail} 
+          value={mail}
           style={styles.textinput}></TextInput>
       </View>
 
