@@ -8,14 +8,25 @@ import {
   Image,
 } from 'react-native';
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Loading from '../components/Loading';
+import { login } from '../redux/userSlice';
+
+
+import { useSelector, useDispatch } from 'react-redux';
+import {setIsLoading } from '../redux/userSlice';
 
 const LoginPage = ({navigation}) => {
 
-  const [mail, setMail] = useState("")
-  const [sifre, setSifre] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [mail, setMail] = useState('')
+  const [sifre, setSifre] = useState('')
+
+
+  // userSlice içerisindeki verilerin okunması
+  const {isLoading} = useSelector((state)=> state.user)
+ 
+  // userSlice içerisindeki reducer yapılarını kullanma veya veri gönderme
+  const dispatch = useDispatch()
 
   return (
     
@@ -30,7 +41,7 @@ const LoginPage = ({navigation}) => {
         <TextInput 
           placeholder='Mail' 
           placeholderTextColor={"gray"} 
-          onChangeText={setMail} 
+          onChangeText={(text)=> setMail(text)} 
           value={mail}
           style={styles.textinput}></TextInput>
       </View>
@@ -40,13 +51,13 @@ const LoginPage = ({navigation}) => {
           secureTextEntry={true}
           placeholder='Şifreniz' 
           placeholderTextColor={"gray"} 
-          onChangeText={setSifre}
+          onChangeText={(password)=> setSifre(password)}
           value={sifre} 
           style={styles.textinput}></TextInput>
       </View>
         
       <Pressable 
-        onPress={()=> setIsLoading(true)}
+        onPress={()=> dispatch(login({mail, sifre}))}
         style={({pressed})=>[{
           backgroundColor: pressed ? "gray" : "#6CA4E0"
         },styles.girisbutton] }>
